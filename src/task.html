@@ -1,0 +1,150 @@
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .c {
+        font-size: 23px;
+        width: 32px;
+        height: 34px;
+        margin: 7.5px;
+        border-radius: 5px;
+        background-color: rgb(248, 161, 0);
+      }
+      .ca {
+        font-size: 23px;
+        width: 60px;
+        height: 34px;
+        margin: 7.5px;
+        border-radius: 15px;
+        background-color: rgb(248, 161, 0);
+      }
+      input {
+        font-size: 14px;
+        width: 192spx;
+        height: 50px;
+        margin: 5px;
+      }
+      .color{
+        margin: 12px;
+        padding: 12px;
+        cursor: pointer;
+        border: 12px;
+        border-radius: 5px;
+      } 
+      .color1{
+        background-color: aquamarine;
+      }
+      .color2{
+        background-color: rgb(215, 168, 244);
+      }
+      .color3{
+        background-color: rgb(255, 255, 255);
+      }
+      .clr{
+        text-align: end;
+      }
+    </style>
+    <script>
+      function colors(z) {
+        var a = getComputedStyle(z);
+        var b = a.backgroundColor;
+        document.getElementsByTagName("BODY")[0].style.backgroundColor=b;
+      }
+    </script>
+  </head>
+  <body>
+    <div class="clr">
+      <div>
+        <span class="color1 color" onclick="colors(this)"></span>
+        <span class="color2 color" onclick="colors(this)"></span>
+        <span class="color3 color" onclick="colors(this)"></span>
+        <span class="color4 color" onclick="colors(this)"></span>
+
+      </div>
+    </div>
+    <div
+      class="div"
+      style="
+        padding: 8px;
+        margin: 5px;
+        margin-right: 979px;
+        justify-content: center;
+        border-radius: 15px;
+        align-items: center;
+        background-color: rgb(0, 0, 0);
+      "
+    >
+      <h4 style="text-align: center; color: antiquewhite">Basic Calculator</h4>
+      <form action="">
+        <input type="text" id="display" name="display" readonly /><br />
+        
+      <button type="button" class="c" onclick="Display('7')">7</button>
+      <button type="button"class="c" onclick="Display('8')">8</button>
+      <button type="button" class="c" onclick="Display('9')">9</button>
+      <button type="button" class="c" onclick="operate('+')">+</button><br>
+      <button type="button" class="c" onclick="Display('4')">4</button>
+      <button type="button"class="c" onclick="Display('5')">5</button>
+      <button type="button" class="c" onclick="Display('6')">6</button>
+      <button type="button" class="c" onclick="operate('-')">-</button><br>
+      <button type="button" class="c" onclick="Display('1')">1</button>
+      <button type="button" class="c" onclick="Display('2')">2</button>
+      <button type="button"class="c" onclick="Display('3')">3</button>
+      <button type="button"class="c" onclick="operate('*')">*</button><br>
+      <button type="button"class="c" onclick="Display('0')">0</button>
+      <button type="button" class="c"onclick="operate('%')">%</button>
+      <button type="button" class="c"onclick="operate('.')">.</button>
+      <button type="button" class="c"onclick="operate('/') ">/</button><br>
+
+      <button type="button" class="ca" onclick="calculate()">=</button>
+      <button type="button" class="ca" onclick="clearDisplay()">C</button>
+    </form>
+
+    <script>
+      let currentExpression = "";
+      let currentOperator = "";
+      let currentResult = 0;
+
+      function Display(value) {
+        currentExpression += value;
+        document.getElementById("display").value = currentExpression;
+      }
+
+      function operate(value) {
+        currentOperator = value;
+        currentResult = parseInt(currentExpression);
+        currentExpression = "";
+      }
+
+      function calculate() {
+        let secondOperand = parseInt(currentExpression);
+        switch (currentOperator) {
+          case "+":
+            currentResult += secondOperand;
+            break;
+          case "-":
+            currentResult -= secondOperand;
+            break;
+          case "*":
+            currentResult *= secondOperand;
+            break;
+          case "/":
+            currentResult /= secondOperand;
+            break;
+          case "%":
+            currentResult %= secondOperand;
+            break;
+        }
+        document.getElementById("display").value = currentResult;
+        currentExpression = "";
+      }
+
+      function clearDisplay() {
+        currentExpression = "";
+        currentOperator = "";
+        currentResult = 0;
+        document.getElementById("display").value = "";
+      }
+    </script>
+  </body>
+</html>
